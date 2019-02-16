@@ -4,27 +4,25 @@
 <div class="row">
     <div class="col-md-12">
       <div class="tile">
-      <a href="{{ route('article.create') }}" class="btn btn-primary mb-2">Add Aricle</a>
+      <a href="" class="btn btn-primary mb-2">Add User</a>
           <table class="table table-hover table-bordered">
             <thead>
               <tr>
                 <th>No</th>
-                <th>Judul</th>
-                <th>Konten</th>
-                <th>Penulis</th>
+                <th>Nama</th>
+                <th>Email</th>
                 <th>Aksi</th>
               </tr>
             </thead>
               {{-- Ubah pake forelse --}}
-            @forelse ($articles as $article)
+            @forelse ($users as $user)
             <tr>
-                <td>{{ $article->id }}</td>
-                <td>{{ $article->title }}</td>
-                <td>{{ str_limit($article->content,60) }}</td>
-                <td>{{ $article->user->name }}</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
                 <td>
-                  <a href="{{ route('article.edit', $article)}}" class="btn btn-primary">Edit</a>
-                  <button href="{{ route('article.destroy', $article)}}" class="btn btn-danger" id="delete">Delete</button>
+                <a href="{{route('user.show', $user)}}" class="btn btn-primary">Show</a>
+                  <button href="" class="btn btn-danger" id="delete">Delete</button>
                 </td>
             </tr>
             @empty
@@ -35,7 +33,7 @@
                
             </tbody>
           </table>
-          {{ $articles->links() }}
+          {{ $users->links() }}
         </div>
       </div>
     </div>
