@@ -11,30 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Route::get('/admin', function () {
-//     return view('admin', [
-//         'title' => 'Artikel 1'
-//     ]);
+// Route::get('/', function () {
+//     return view('welcome');
 // });
 
-// Route::get('/test', function () {
-//     return view('test', [
-//         'title' => 'Artikel Test'
-//     ]);
+// Route::get('/', function () {
+//     return view('main');
 // });
-
-// // Tambahan
-// Route::get('/index', function () {
-//     return view('article.index', [
-//         'title' => 'Artikel Index'
-//     ]);
-// });
-
-
+Route::get('/', 'LayoutController@index')->name('main');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
