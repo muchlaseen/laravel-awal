@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Article;
-use App\User;
+use App\Http\Controllers\Controller;
+use App\{ Article, Comment };
 
 class LayoutController extends Controller
 {
@@ -16,6 +16,31 @@ class LayoutController extends Controller
             'title' => 'Home | Blog',
             'articles' => $articles,
         ]);
+    }
+
+    public function show($id)
+    {
+        $article = Article::find($id);
+
+        return view('showmain', [
+            'title' => 'Blog' . $id,
+            'article' => $article,
+            'comments' => $article->comments()->latest()->get(),
+        ]);
+    }
+
+    public function comment(Request $request, $id)
+    {
+        // dd($request->all()); for dummie text
+        $comment = new Comment;
+
+        $comment->user_id = auth()->id();
+        $comment->article_id = $id;
+        $comment->message = $request->message;
+
+        $comment->save();
+
+        return redirect()->back()->with('success', 'Komentar berhasil dipost');
     }
 
 }

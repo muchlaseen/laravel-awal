@@ -20,7 +20,7 @@
               <div class="card-body">
                 <h2 class="card-title">{{$article->title}}</h2>
                 <p class="card-text">{{$article->content}}</p>
-                <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                <a href="{{route('main.show', $article)}}" class="btn btn-primary">Read More &rarr;</a>
               </div>
               <div class="card-footer text-muted">
                 {{$article->created_at->diffForHumans()}}
